@@ -1,0 +1,150 @@
+{% extends 'default.html' %}
+
+{% block title %}
+    Pré-Consulta
+{% endblock %}
+
+{% block main%}
+{% include '_nav.html' %}
+{% include '_messages.html' %}
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-sm">
+            <p class="text-black border-top ">
+                <strong>
+                    Nome
+                </strong>
+                {% if preconsulta.name %}
+                    <button class="btn btn-secondary btn-sm btn-sm float-right"
+                            type="button" onclick="copiarTexto('{{preconsulta.name | upper}}')">
+                        Copiar
+                    </button>
+                {% endif %}
+            </p>
+            <p class="text-black" style="background-color: rgba(220,220,220)">
+                {{ preconsulta.name | upper }}
+            </p>
+            <p class="text-black border-top">
+                <strong>
+                    Telefone
+                </strong>
+                {% if preconsulta.phone %}
+                    <button class="btn btn-secondary btn-sm btn-sm float-right"
+                            type="button" onclick="copiarTexto('{{preconsulta.phone | upper}}')">
+                        Copiar
+                    </button>
+                {% endif %}
+            </p>
+            <p class="text-black" style="background-color: rgba(220,220,220)">
+                {{ preconsulta.phone | upper }}
+            </p>
+            <p class="text-black border-top">
+                <strong>
+                    Idade
+                </strong>
+                {% if preconsulta.age %}
+                    <button class="btn btn-secondary btn-sm btn-sm float-right"
+                            type="button" onclick="copiarTexto('{{preconsulta.age | upper}}')">
+                        Copiar
+                    </button>
+                {% endif %}
+            </p>
+            <p class="text-black" style="background-color: rgba(220,220,220)">
+                {{ preconsulta.age | upper }}
+            </p>
+            <p class="text-black border-top">
+                <strong>
+                    Profissão
+                </strong>
+                {% if preconsulta.profession %}
+                    <button class="btn btn-secondary btn-sm btn-sm float-right"
+                            type="button" onclick="copiarTexto('{{preconsulta.profession | upper}}')">
+                        Copiar
+                    </button>
+                {% endif %}
+            </p>
+            <p class="text-black" style="background-color: rgba(220,220,220)">
+                {{ preconsulta.profession | upper }}
+            </p>
+        </div>
+        <div class="col-sm">
+            <p class="text-black border-top">
+                <strong>
+                    Cirurgia(s)
+                </strong>
+                {% if preconsulta.surgery %}
+                    <button class="btn btn-secondary btn-sm btn-sm float-right"
+                            type="button" onclick="copiarTexto('{{preconsulta.surgery | upper}}')">
+                        Copiar
+                    </button>
+                {% endif %}
+            </p>
+            <p class="text-black" style="background-color: rgba(220,220,220)">
+                {{ preconsulta.surgery | upper }}
+            </p>
+            <p class="text-black border-top">
+                <strong>
+                    Expectativa
+                </strong>
+                {% if preconsulta.expectancy %}
+                    <button class="btn btn-secondary btn-sm btn-sm float-right"
+                            type="button" onclick="copiarTexto('{{preconsulta.expectancy | upper}}')">
+                        Copiar
+                    </button>
+                {% endif %}
+            </p>
+            <p class="text-black" style="background-color: rgba(220,220,220)">
+                {{ preconsulta.expectancy | upper }}
+            </p>
+            <p class="text-black border-top">
+                <strong>
+                    Medo
+                </strong>
+                {% if preconsulta.fear %}
+                    <button class="btn btn-secondary btn-sm btn-sm float-right"
+                            type="button" onclick="copiarTexto('{{preconsulta.fear | upper}}')">
+                        Copiar
+                    </button>
+                {% endif %}
+            </p>
+            <p class="text-black" style="background-color: rgba(220,220,220)">
+                {{ preconsulta.fear | upper }}
+            </p>
+            <p class="text-black border-top">
+                <strong>
+                    Indicação
+                </strong>
+                {% if preconsulta.recommendation %}
+                    <button class="btn btn-secondary btn-sm btn-sm float-right"
+                            type="button" onclick="copiarTexto('{{preconsulta.recommendation | upper}}')">
+                        Copiar
+                    </button>
+                {% endif %}
+            </p>
+            <p class="text-black" style="background-color: rgba(220,220,220)">
+                {{ preconsulta.recommendation | upper }}
+            </p>
+            <p class="text-black border-top">
+                <strong>Data e Hora</strong>
+            </p>
+            <p class="text-black" style="background-color: rgba(220,220,220)">
+                {{ preconsulta.creation_time | date:'d/m/y H:i:s' }}
+            </p>
+            <p class="text-black border-top">
+
+            </p>
+            <form method="POST" >
+                {% csrf_token %}
+                <button type="submit" class="btn btn-dark " onclick="self.close ()">
+                    Fechar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock%}
+
+{% block footer %}
+{% include '_footer.html' %}
+{% endblock%}

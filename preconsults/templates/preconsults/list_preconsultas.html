@@ -1,0 +1,140 @@
+{% extends 'default.html' %}
+
+{% block title %}
+    Lista Pré-Consultas
+{% endblock %}
+
+{% block main%}
+{% include '_nav.html' %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="row" style="background-color: rgba(0,0,0)">
+        <div class="container " >
+            <div class="row" >
+                <div class="col text-white">
+                    Data Inicial
+                    <input name="first_date" type="date" data-date-format="mm/dd/yyyy"
+                    value = "{{ first_date }}"  class="form-control">
+                </div>
+                <div class="col text-white">
+                    Data Final
+                    <input name="last_date" type="date"
+                    value = "{{ last_date }}" class="form-control">
+                </div>
+                    <div class="col text-white" >
+                    Pesquisar
+                    <input name="search" value="{{ search }}" type="input" class="form-control">
+                </div>
+                <div class="col-sm-1">
+                    <button type="submit" class="btn btn-primary ">Aplicar Filtro</button>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</form>
+{% include '_messages.html' %}
+<div class="table-responsive col-sm">
+    <table class="table table-hover">
+        <thead >
+            <tr>
+                <th scope="col" bgcolor="d3d3d3">DATA</th>
+                <th scope="col" bgcolor="d3d3d3">NOME</th>
+                <th scope="col" bgcolor="d3d3d3">TELEFONE</th>
+                <th scope="col" bgcolor="d3d3d3">IDADE</th>
+                <th scope="col" bgcolor="d3d3d3">PROFISSÃO</th>
+                <th scope="col" bgcolor="d3d3d3">CIRURGIA</th>
+                <th scope="col" bgcolor="d3d3d3">RINO</th>
+                <th scope="col" bgcolor="d3d3d3">LINK</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in dados %}
+            <tr>
+                <td style="width:8%">
+                    <a href="{% url 'detail_preconsults' data.id   %}" target="_blank" style="text-decoration:none">
+                        <div style="height:100%;width:100%" class="text-body">
+                            <small>
+                                {{ data.creation_time | date:'d/m/y' }}
+                            </small>
+                        </div>
+                    </a>
+                </td>
+                <td style="width:22%">
+                    <a href="{% url 'detail_preconsults' data.id  %}" target="_blank" style="text-decoration:none">
+                        <div style="height:100%;width:100%" class="text-body">
+                            <small>
+                                {{ data.name | upper }}
+                            </small>
+                        </div>
+                    </a>
+                </td>
+                <td style="width:10%">
+                    <a href="{% url 'detail_preconsults' data.id  %}" target="_blank" style="text-decoration:none">
+                        <div style="height:100%;width:100%" class="text-body">
+                            <small>
+                                {{ data.phone | upper }}
+                            </small>
+                        </div>
+                    </a>
+                </td>
+                <td style="width:5%">
+                    <a href="{% url 'detail_preconsults' data.id  %}" target="_blank" style="text-decoration:none">
+                        <div style="height:100%;width:100%" class="text-body">
+                            <small>
+                                {{ data.age | upper }}
+                            </small>
+                        </div>
+                    </a>
+                </td>
+                <td style="width:15%">
+                    <a href="{% url 'detail_preconsults' data.id  %}" target="_blank" style="text-decoration:none">
+                        <div style="height:100%;width:100%" class="text-body">
+                            <small>
+                                {{ data.profession | upper }}
+                            </small>
+                        </div>
+                    </a>
+                </td>
+                <td style="width:35%">
+                    <a href="{% url 'detail_preconsults' data.id  %}" target="_blank" style="text-decoration:none">
+                        <div style="height:100%;width:100%" class="text-body">
+                            <small>
+                                {{ data.surgery | upper }}
+                            </small>
+                        </div>
+                    </a>
+                </td>
+                <td style="width:5%">
+                    <a href="{% url 'detail_preconsults' data.id  %}" target="_blank"
+                                                                style="text-decoration:none">
+                        <div style="height:100%;width:100%" class="text-body  text-center">
+                            {% if  data.rhinoplasty  %}
+                                <img src="/static/check.png" width="15em" height="15em"
+                                            class="img-fluid;" alt="check">
+                            {% endif %}
+                        </div>
+                    </a>
+                </td>
+                <td style="width:5%">
+                    <a href="{% url 'detail_preconsults' data.id  %}" target="_blank"
+                                                        style="text-decoration:none">
+                        <div style="height:100%;width:100%" class="text-body  text-center">
+                            {% if  data.checklink  %}
+                                <img src="/static/check.png" width="15em" height="15em"
+                                                                class="img-fluid;" alt="check">
+                            {% endif %}
+                        </div>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<br>
+{% endblock%}
+
+{% block footer %}
+{% include '_footer.html' %}
+{% endblock%}
